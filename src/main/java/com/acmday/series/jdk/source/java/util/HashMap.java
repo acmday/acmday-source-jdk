@@ -435,7 +435,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /* ---------------- Public operations -------------- */
 
-    /**
+    /**MAXIMUM_CAPACITY的值为2^30，而不是（2^31）-1，并不是说HashMap的最大容量是2^30。当oldCap=MAXIMUM_CAPACITY,并且需要扩容时，size会变成（2^31）-1（详见resize方法）
      * Constructs an empty <tt>HashMap</tt> with the specified initial
      * capacity and load factor.
      *
@@ -448,9 +448,6 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " +
                                                initialCapacity);
-
-        //MAXIMUM_CAPACITY的值为2^30，而不是（2^31）-1，并不是说HashMap的最大容量是2^30。
-        //当oldCap=MAXIMUM_CAPACITY,并且需要扩容时，size会变成（2^31）-1（详见resize方法）
         if (initialCapacity > MAXIMUM_CAPACITY)
             initialCapacity = MAXIMUM_CAPACITY;
         if (loadFactor <= 0 || Float.isNaN(loadFactor))
